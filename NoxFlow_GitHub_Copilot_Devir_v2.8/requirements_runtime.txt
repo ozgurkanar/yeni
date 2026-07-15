@@ -1,0 +1,2 @@
+# Standart akışlarda harici bağımlılık yoktur.
+# Görsel bekleme adımları kullanılıyorsa: Pillow>=10.0

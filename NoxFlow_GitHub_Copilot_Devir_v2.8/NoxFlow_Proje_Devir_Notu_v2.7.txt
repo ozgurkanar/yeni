@@ -1,0 +1,16 @@
+NOXFLOW MODULAR 2.7 FINAL
+
+Başlat sırası:
+1. Kaynak nox kaydı doğrulanır; kaynak VM açılmaz.
+2. Windows'taki tüm Nox görevleri taskkill /F /T ile kapatılır.
+3. Eski Nox_1, NoxConsole remove -name:Nox_1 ile kaldırılır.
+4. Nox_1, NoxConsole copy -name:Nox_1 -from:nox ile gerçek Multi-Drive klonu olarak oluşturulur.
+5. Nox_1, NoxConsole launch -name:Nox_1 ile açılır.
+6. Android boot ve ADB beklenir.
+7. Charles ve seçici proxy hazırlanır.
+8. Sertifika yeni klona kurulur.
+9. Kullanıcının Yeni_Akis_orijinal.noxflow.json dosyasındaki 10 uygulama adımı çalışır.
+10. Tur sonunda tüm Nox görevleri kapatılır. Yeni tur varsa aynı zincir baştan çalışır.
+
+Klonlama için shutil/copytree veya klasör kopyalama kullanılmaz.
+Gömülü akış dosyasında lifecycle bölümü ve kullanıcının uygulama adımları birlikte bulunur.

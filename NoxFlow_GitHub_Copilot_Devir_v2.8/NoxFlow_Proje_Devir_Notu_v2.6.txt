@@ -1,0 +1,55 @@
+NOXFLOW PROJE DEVİR NOTU
+Tarih: 2026-07-15
+Son sürüm: NoxFlow Modular 2.6 FINAL
+
+KESİN ÇALIŞMA DÜZENİ
+- Kaynak nox program tarafından açılmaz, değiştirilmez veya silinmez.
+- Bütün işlemler Nox_1 çalışma klonunda yürütülür.
+- Başlangıçta Nox_1 geçerliyse mevcut klon kullanılır.
+- Nox_1 açıksa devam edilir; kapalıysa NoxConsole ile açılır.
+- Nox_1 yoksa Nox'un kendi Multi-Drive/Assistant komutu kullanılır:
+  NoxConsole.exe copy -name:Nox_1 -from:nox
+- Durdur veya X düğmesinde Nox_1 yalnızca kapatılır; kaydı ve klasörü korunur.
+- Seçilen 10 akış turu veya dakika sınırı dolunca Nox_1 temiz biçimde yenilenir.
+
+BAŞLANGIÇ
+1. Kaynak nox kaydı ve klasörü doğrulanır.
+2. Kaynak nox açık bırakılmışsa kapatılır; hiçbir zaman çalışma için açılmaz.
+3. Charles açıksa kullanılır, kapalıysa açılır.
+4. Seçici proxy geçidi açılır.
+5. Mevcut Nox_1 doğrulanır veya NoxConsole copy ile oluşturulur.
+6. Nox_1 açıksa bağlanılır, kapalıysa açılır.
+7. ADB, 120 Hz, proxy, sertifika ve gömülü akış hazırlanır.
+
+KAYITSIZ NOX_1 KLASÖRÜ
+- Nox_1 klasörü var fakat NoxConsole kaydı yoksa silinmez.
+- Tarihli Nox_1_yedek_YYYYMMDD_HHMMSS adına taşınır.
+- Ardından NoxConsole copy ile düzgün ve kayıtlı klon oluşturulur.
+
+KLON YENİLEME
+- Kullanım sınırı tamamlanınca yalnızca Nox_1 için:
+  proxy temizle -> kapat -> ADB kapanışını bekle -> NoxConsole remove ->
+  sonraki turda NoxConsole copy.
+- Kaynak nox yalnızca Nox'un klonlama komutuna kaynak olur.
+
+DURDUR / X
+- Akış kesilir.
+- Nox_1 proxy ayarı temizlenir.
+- Nox_1 kapatılır.
+- Nox_1 kaydı ve klasörü korunur.
+- Seçici geçit kapatılır.
+- Charles runtime tarafından açıldıysa kapatılır.
+
+DÜZELTİLEN ANA HATA
+- v2.5'te cleanup_working_clone yanlış girinti nedeniyle NoxConsole sınıfının dışındaydı.
+- Bu nedenle 'NoxConsole object has no attribute cleanup_working_clone' hatası oluşuyordu.
+- v2.6 yaşam döngüsü yeniden düzenlendi ve bu hatalı başlangıç temizliği kaldırıldı.
+
+SERTİFİKA
+- Başarılı kurulumdan sonra klona sertifika sürüm işareti yazılır.
+- Aynı kalıcı klonda aynı sertifika tekrar kurulmaz.
+- Klon yenilendiğinde yeni klonda otomatik hazırlanır.
+
+TEST
+- Python compileall: başarılı.
+- unittest: 21/21 başarılı.
